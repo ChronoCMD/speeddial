@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4wLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjwhLS0gQ3JlYXRvcjogQ29yZWxEUkFXIFg4IC0tPg0KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIwLjA1MzMzODZpbiIgaGVpZ2h0PSIwLjA1MzMzODZpbiIgdmVyc2lvbj0iMS4wIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgaW1hZ2UtcmVuZGVyaW5nPSJvcHRpbWl6ZVF1YWxpdHkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIg0Kdmlld0JveD0iMCAwIDUzIDUzIg0KIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiA8ZyBpZD0iTGF5ZXJfeDAwMjBfMSI+DQogIDxtZXRhZGF0YSBpZD0iQ29yZWxDb3JwSURfMENvcmVsLUxheWVyIi8+DQogIDxnIGlkPSJfMjEwOTQzMzEwMDQwMCI+DQogICA8cmVjdCBmaWxsPSJub25lIiB3aWR0aD0iNTMuMzM0NiIgaGVpZ2h0PSI1My4zMzQ2Ii8+DQogICA8Zz4NCiAgICA8cmVjdCBmaWxsPSIjQzlDQ0NEIiB4PSI2IiB5PSIxMCIgd2lkdGg9IjE5LjQyNzEiIGhlaWdodD0iMTYuMTg5IiByeD0iNCIgcnk9IjQiLz4NCiAgICA8cmVjdCBmaWxsPSIjQzlDQ0NEIiB4PSI2IiB5PSIyOSIgd2lkdGg9IjE5LjQyNzEiIGhlaWdodD0iMTYuMTg5IiByeD0iNCIgcnk9IjQiLz4NCiAgICA8cmVjdCBmaWxsPSIjQzlDQ0NEIiB4PSIyOCIgeT0iMTAiIHdpZHRoPSIxOS40MjcxIiBoZWlnaHQ9IjE2LjE4OSIgcng9IjQiIHJ5PSI0Ii8+DQogICAgPHJlY3QgZmlsbD0iI0M5Q0NDRCIgeD0iMjgiIHk9IjI5IiB3aWR0aD0iMTkuNDI3MSIgaGVpZ2h0PSIxNi4xODkiIHJ4PSI0IiByeT0iNCIvPg0KICAgPC9nPg0KICA8L2c+DQogPC9nPg0KPC9zdmc+DQo=">
+	<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAALiMAAC4jAXilP3YAAABSSURBVDhP3ZAxCgAgDMT6/285KfZNaqEcSAs3dBAMZDE3SOUj+tDWp67L88YaCAOXNZANTNZANjBZA+UblCn/IAxc1kA2MFkD2cBkDZRv8AiRDa3HkagUT3GRAAAAAElFTkSuQmCC">
+	<title>Speed Dial</title>
+	<style type="text/css">
+		body{
+			background-color: #2E2C33;
+			color: white;
+			font-family: Arial;
+		}
+		.tile a{
+			text-decoration: none;
+			color: white;
+		}
+		.stand{
+			height: 60%;
+			width: 25%;
+			bottom: 0;
+			position: fixed;
+			z-index: -1;
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+		.stand-left{
+			background-image: url(kyoka.png);
+			background-position: bottom left;
+			left: 0;
+		}
+		.stand-right{
+			background-image: url(tsukiyomi.png);
+			background-position: bottom right;
+			right: 0;
+		}
+		.container{
+			align-items: center;
+			width: 100%;
+		}
+		.tile-grid{
+			padding: 50px 20px;
+			margin: 0 auto;
+			display: flex;
+			flex-wrap: wrap;
+			width: 184px;
+		}
+		.tile{
+			display: inline-block;
+			width: 72px; 
+			margin: 5px 10px;
+		}
+		.tile, .image, .title, .tile-grid, .stand {
+			transition: ease 200ms;
+		}
+		.tile .image{
+			width: 100%;
+			height: 72px;
+			border-radius: 5px;
+			background-color: rgba(0,0,0,0.3);
+			background-size: cover;
+			background-position: center;
+			box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px -8px;
+		}
+		.tile .title{
+			padding: 8px;
+			text-align: center;
+			font-size: x-small;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.search-box-component{
+			display: block;
+			margin-bottom: 25px;
+			position: relative;
+			z-index: 10;
+			height: 50px;
+		}
+		.web-search-container{
+			left: 50%;
+			transform: translateX(-50%);
+			width: 90%;
+			position: absolute;
+			top: 36px;
+		}
+
+		.web-search {
+			align-items: center;
+			background-image: linear-gradient(
+				180deg,
+				rgba(255, 255, 255, 0.8) 0,
+				rgba(255, 255, 255, 0.2) 100%
+				);
+			background-repeat: repeat-x;
+			border-radius: 5px;
+			box-sizing: border-box;
+			pointer-events: all;
+		}
+
+		.web-search-inner-container {
+			box-sizing: border-box;
+			display: flex;
+			width: 100%;
+		}
+
+		.web-search-input {
+			border: 1px solid hsl(0, 0%, 70%);
+			border-radius: 4px;
+			box-shadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.15);
+			box-sizing: border-box;
+			height: 36px;
+			line-height: 36px;
+			padding: 0 8px;
+			width: 100%;
+		}
+
+		.web-search-submit {
+			background-color: rgb(73, 139, 244);
+			background-image: linear-gradient(
+				180deg,
+				rgba(255, 255, 255, 0.1) 0,
+				rgba(255, 255, 255, 0) 100%
+				);
+			border: 1px solid rgb(48, 121, 237);
+			border-radius: 4px;
+			color: #fff;
+			font-size: 14px;
+			height: 36px;
+			line-height: 36px;
+			padding: 0 10px;
+		}
+
+		.web-search .suggestion-input-container {
+			flex: 1;
+			font-size: 16px;
+		}
+
+		.web-search-logo-container {
+			display: none;
+			height: 40px;
+			line-height: 40px;
+			margin-bottom: -40px;
+			position: relative;
+			text-align: end;
+		}
+
+		.web-search-logo {
+			height: 40px;
+			-webkit-padding-end: 4px;
+		}
+
+		.web-search-submit {
+			/* use the white magnifying glass */
+			background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAQAAACR313BAAAAsUlEQVQYGXXBPUrDAAAG0G8Up27BC4j36CjO4jE8QIci1FFw6eAqri49gU56gw5dXBSsTi1oSPM0lvQH6nvJL11jFUrPDrNNX+PTxAwLp1nTRek4f/TUKkVaxjjJihvcp6XykQ321d7TwiRblOZpKc2yQYG3tDyhlxUPuEvLkYXa0F7iwCNKnaw5U6FWanwbmRpkTWFkau7VrY4XjWF2c27pOru5tHSV3Qw06vzHhYWvHzESrc0VDJJNAAAAAElFTkSuQmCC") no-repeat 50% 50% #4584EE;
+			border-radius: 0 2px 2px 0;
+			border-width: 0;
+			color: #fff;
+			text-indent: -1000em; /* content: ""; Does not work on buttons */
+			width: 60px;
+		}
+
+		.web-search-logo {
+			background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAAAoCAMAAAAlmk//AAAAflBMVEUAAABChfRChfRChfRChfRChfRChfQ0qFNChfRChfQ0qFM0qFNChfRChfRChfRChfRChfTqQzXqQzXqQzXqQzXsUDH7vAX7vAX7vAX7vAX7vAX7vAX7vAX7vAXqQzXqQzXqQzXqQzXqQzX7vAXqQzXqQzXqQzX7vAXqQzXqQzV8UOWQAAAAKnRSTlMARZzP/78zOmDfv/8eb3/wrm+u3v8XZp3a//C+fyVg75lCUTMzz79HfyXCjBCYAAACw0lEQVR4AeyW16KiMBCGJzG4cE4MWCg2it33f8Hld3Cc7ZWr3e/GlvDxT5JB+nP+Y+zE9UR2Sn/Ghx76JnHihOjPVG/v72/0DTzCKGYjiaYcJwohWFbGo4h86nqCHz5lztlxEiFEOiUhtjSKKIbHk2YMERfO0PgiBIpofBHZ7weaL5ar5WKek1CU1Xqz3e31WU9cYg2FEIwW1YtmtWw7YlLnUvoWh+WKaWpijtWa2eyI8ZFjZti7L9HpObfNCejKUfQixi2tXtTs2ayFkj2JE7Soa2Tq+UuRE/Blh1GXuqsveHMgoj08VXG9ljDt5HBYY+ynorzhuQfMvf1AhDFzAoi2JKJSglx75WbPe2nieVdp0Q01I4Cr3PnayRelSyE69SMWxLSPSDnyEFP07wsEkkMYtKgZKnZqmyESovNIRYI2hJs6EXN/3OCVL870kbbkHUYyXolOvKpc9NUFZee9IsiU2SMFPcFw2vWiKw1skc7oDjx5iTqIbg0sTXuXiyK8BnJDl6+K9kq0JqNPYaRFA+c61yc2+6IrJbyeuRItqNCJKpTO6HqkX4jktEqzs58/BmdEtZwefj+no2w6oj2/T2XTQiqiHDXT/UT2ZSTVm8Iz8XwUGh6bL3mPoi0cpXJIZ1+LNFEiWvQThjhtm8uSABt7IhNnThYNtVtidHceTgVqtymQB57tsMQuSCcSUfeIhP3a4iI6kyCPwfy8guqyxMs5p8eJhWpbPV6OcpdphDhKhJMH1eX8eDlJuSIncBnFBMTDJgYeMQFdOjYB7QEme6bJDL2olzz0Jut6rdhT5jKV7zLj0yci6i5qrsaYEAxbFKf6Nj+RZl/siitpfBxiTxAZ0twPt7oTzR/j1fae0lj4kCSDKcMjdDQCDoZ/bgpLY8FtJA2zgFfnaTymqRNiGhP5c5IaGhljo0mUzTz983zc0AYAFYxGdbN35UQAAAAASUVORK5CYII=") no-repeat 5px 3px;
+			width: 112px;
+		}
+
+		.web-search .suggestion-input-container
+		{
+			-webkit-margin-end: 0;
+			margin-end: 0;
+		}
+
+		.web-search-input
+		{
+			border-radius: 0;
+			border-right: none;
+			box-shadow: none;
+		}
+
+		.web-search-input:focus
+		{
+			border-color: #4584EE;
+		}
+
+		.web-search-container {
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+		}
+
+		.web-search {
+			background: rgba(255, 255, 255, 1);
+			border-radius: 5px;
+			border-width: 0;
+			box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 11px rgba(0, 0, 0, 0.2);
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 0;
+			transition: opacity 0.3s;
+		}
+
+		.web-search-inner-container {
+			padding: 12px 17px;
+		}
+
+		.web-search-input {
+			font: inherit;
+		}
+		
+		.web-search-submit {
+			z-index: 10;
+		}
+		@media(max-width: 520px) {
+			.hikari-tile{
+				background-position: 20% !important;
+			}
+			.fb-tile{
+				background-image: url(fb-s-dial.png);
+			}
+		}
+		@media(min-width: 341px) {
+			.tile-grid{
+				width: 276px;
+			}
+		}
+		@media(min-width: 521px) {
+			.web-search-logo-container {
+				display: inline-flex;
+			}
+			.web-search .suggestion-input-container {
+				margin-left: 15px;
+			}
+			.tile-grid{
+				width: 440px;
+			}
+			.tile{
+				width: 200px;
+			}
+			.tile .image{
+				height: 120px;
+			}
+			.hikari-tile{
+				background-position: center;
+			}
+			.fb-tile{
+				background-image: url(fb-dial.png);
+			}
+			.tile .title{
+				font-size: small;
+			}
+		}
+		@media(min-width: 731px) {
+			.web-search-container {
+				width: 80%;
+			}
+			.tile-grid{
+				width: 660px;
+			}
+		}
+		@media(min-width: 951px) {
+			.web-search-container {
+				width: 690px;
+			}
+			.tile-grid{
+				width: 880px;
+			}
+		}
+		@media(min-width: 1165px) {
+			.tile-grid{
+				width: 1100px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="stand stand-left"></div>
+	<div class="stand stand-right"></div>
+		<div class="search-box-component">
+		<div class="web-search-container">
+			<!--Google-->
+			<form action="https://google.com/search?" method="get" class="web-search">
+			<!--Discoverapp.com-->
+			<form action="https://0.discoverapp.com/search_shim/" method="get" class="web-search">
+				<div class="web-search-inner-container">
+					<span class="web-search-logo-container">
+						<span class="web-search-logo"></span>
+					</span>
+					<div class="suggestion-input-container">
+						<!--Google-->
+						<input autocomplete="off" incremental="" placeholder="Search the web" tabindex="2000" type="search" value="" class="web-search-input" name="q" autofocus>
+						<!--Discoverapp.com-->
+						<!--input autocomplete="off" incremental="" placeholder="Search the web" tabindex="2000" type="search" value="" class="web-search-input" name="query" autofocus-->
+					</div>
+					<button tabindex="2000" type="submit" class="web-search-submit">Search</button>
+				</div>
+			</form>
+		</div>
+		</div>
+		<div class="tile-grid">
+			<div class="tile">
+				<a href="https://hikarinoakariost.info/">
+					<div class="image hikari-tile" style="background-image: url(hikari-dial.png);"></div>
+					<div class="title">Hikari no Akari</div>
+				</a>
+			</div>
+			<!--div class="tile">
+				<a href="http://m.chia-anime.me/">
+					<div class="image" style="background-image: url(chia-dial.png); background-size: 100%"></div>
+					<div class="title">Chia-Anime</div>
+				</a>
+			</div-->
+			<div class="tile">
+				<a href="https://mangadex.org/">
+					<div class="image" style="background-image: url(mangadex-dial.png);"></div>
+					<div class="title">MangaDex</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="http://localhost/phpmyadmin/">
+					<div class="image" style="background-image: url(pma-dial.png); background-size: 100%"></div>
+					<div class="title">phpMyAdmin</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="../">
+					<div class="image" style="background-image: url(ua-dial.png);"></div>
+					<div class="title">Undercover Agency</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="early.zip">
+					<div class="image" style="background-image: url(note-image-full.png);"></div>
+					<div class="title">Download File</div>
+				</a>
+			</div>
+			<!--div class="tile">
+				<a href="https://eimusics.com/">
+					<div class="image" style="background-image: url(ei-dial.png);"></div>
+					<div class="title">Eimusics</div>
+				</a>
+			</div-->
+			<div class="tile">
+				<a href="https://twitter.com/">
+					<div class="image" style="background-image: url(twitter-dial.png);"></div>
+					<div class="title">Twitter</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="https://mail.google.com/">
+					<div class="image" style="background-image: url(gmail-dial.png);"></div>
+					<div class="title">Gmail</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="https://drive.google.com/">
+					<div class="image" style="background-image: url(drive-dial.png);"></div>
+					<div class="title">Google Drive</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="https://www.youtube.com/">
+					<div class="image" style="background-image: url(yt-dial.png);"></div>
+					<div class="title">YouTube</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="https://m.facebook.com/home.php?sk=h_chr">
+					<div class="image fb-tile"></div>
+					<div class="title">Basic Facebook</div>
+				</a>
+			</div>
+			<!--div class="tile">
+				<a href="https://messenger.com/">
+					<div class="image" style="background-image: url(orca-dial.png);"></div>
+					<div class="title">Messenger</div>
+				</a>
+			</div-->
+			<!--div class="tile">
+				<a href="https://dan-ball.jp/en/javagame/ranger2/">
+					<div class="image" style="background-image: url(r2-dial.png);"></div>
+					<div class="title">Stick Ranger 2</div>
+				</a>
+			</div-->
+			<!--div class="tile">
+				<a href="https://feedly.com/">
+					<div class="image" style="background-image: url(feedly-dial.png);"></div>
+					<div class="title">Feedly</div>
+				</a>
+			</div-->
+			<!--div class="tile">
+				<a href="#" onclick="loginVSU()">
+					<div class="image" style="background-image: url(oed-dial.png);"></div>
+					<div class="title">Blended Online</div>
+				</a>
+			</div-->
+			<div class="tile">
+				<a href="https://elearning.vsu.edu.ph/">
+					<div class="image" style="background-image: url(elearning-dial.png);"></div>
+					<div class="title">VSUEE</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="https://vsu.edu.ph/">
+					<div class="image" style="background-image: url(vsu-dial.png);"></div>
+					<div class="title">VSU</div>
+				</a>
+			</div>
+			<div class="tile">
+				<a href="https://my.vsu.edu.ph/">
+					<div class="image" style="background-image: url(myvsu-dial.png);"></div>
+					<div class="title">MYVSU Portal</div>
+				</a>
+			</div>
+		</div>
+		<!--form action="https://elearning.vsu.edu.ph/login/index.php" method="post" name="myvsuform" style="display: none;">
+			<input type="text" name="username" value="20-1-00108">
+			<input type="password" name="password" value="">
+			<button type="submit"></button>
+		</form>
+		<script type="text/javascript">
+			function loginVSU() {
+				document.myvsuform.submit();
+				document.myvsuform.action = "https://elearning.vsu.edu.ph/login/index.php"
+			}
+		</script-->
+	</body>
+</html>
