@@ -17,12 +17,12 @@ body{
     background-repeat: no-repeat;
 }
 .stand-left{
-    background-image: url(kyoka.png);
+    background-image: url(../img/kyoka.png);
     background-position: bottom left;
     left: 0;
 }
 .stand-right{
-    background-image: url(tsukiyomi.png);
+    background-image: url(../img/tsukiyomi.png);
     background-position: bottom right;
     right: 0;
 }
@@ -209,7 +209,7 @@ body{
         background-position: 20% !important;
     }
     .fb-tile{
-        background-image: url(fb-s-dial.png);
+        background-image: url(../img/fb-s-dial.png);
     }
 }
 @media(min-width: 341px) {
@@ -237,7 +237,7 @@ body{
         background-position: center;
     }
     .fb-tile{
-        background-image: url(fb-dial.png);
+        background-image: url(../img/fb-dial.png);
     }
     .tile .title{
         font-size: small;
